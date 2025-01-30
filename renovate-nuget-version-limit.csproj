@@ -15,6 +15,7 @@
   <ItemGroup>
     <PackageReference Include="NuGet.Common" Version="6.12.1" />
     <PackageReference Include="NuGet.Protocol" Version="6.12.1" />
+    <PackageReference Include="NuGet.Versioning" Version="6.12.1" />
   </ItemGroup>
 
 </Project>
