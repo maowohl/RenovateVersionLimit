@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.9.1" />
     <PackageReference Include="NuGet.Common" Version="6.12.1" />
     <PackageReference Include="NuGet.Protocol" Version="6.12.1" />
     <PackageReference Include="NuGet.Versioning" Version="6.12.1" />
