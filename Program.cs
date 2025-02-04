@@ -1,4 +1,5 @@
 ﻿using CommandLine;
+using Microsoft.Build.Construction;
 using NuGet.Common;
 using NuGet.Frameworks;
 using NuGet.Packaging.Core;
@@ -26,6 +27,7 @@ internal class Program
     private static async Task RunOptions(Options opts)
     {
         List<Dependency> packages = new();
+        // parse package parameters
         foreach (var packageName in opts.PackageNames.Where(s => !string.IsNullOrWhiteSpace(s)))
         {
             var packageParts = packageName.Split(opts.VersionSeparator, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
@@ -41,6 +43,38 @@ internal class Program
             else
             {
                 throw new ArgumentException($"Invalid package name or version: {packageName}. Expected format: 'packageName{opts.VersionSeparator}version'");
+            }
+        }
+
+        // parse project parameters
+        foreach (var project in opts.ProjectFiles.Where(s => !string.IsNullOrWhiteSpace(s)))
+        {
+            ProjectRootElement projectRootElement;
+            try
+            {
+                projectRootElement = ProjectRootElement.Open(project);
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException($"Invalid project file: {project}. Error: {ex.Message}");
+            }
+
+            // parse dependencies
+            foreach (var package in projectRootElement.Items.Where(i => i.ItemType == "PackageReference"))
+            {
+                var packageName = package.Include;
+                var versionElement = (ProjectMetadataElement?)package.Children.FirstOrDefault(c => c.ElementName == "Version");
+                if (versionElement == null)
+                {
+                    throw new ArgumentException($"Invalid project file: {project}. Package '{packageName}' does not have a version specified.");
+                }
+                var version = versionElement.Value;
+                packages.Add(new Dependency
+                {
+                    Name = packageName,
+                    Version = version,
+                    Level = 0
+                });
             }
         }
 

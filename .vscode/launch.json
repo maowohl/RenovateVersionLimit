@@ -14,6 +14,7 @@
             "args": [
                 //"--help"
                 "-p Volo.Abp|1.0.0 Volo.Abp|1.0.2",
+                "-f ./renovate-nuget-version-limit.csproj"
             ],
             "cwd": "${workspaceFolder}",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
