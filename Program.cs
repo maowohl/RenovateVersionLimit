@@ -8,12 +8,6 @@ using NuGet.Protocol.Core.Types;
 using NuGet.Versioning;
 using renovate_nuget_version_limit.Classes;
 
-// parametros(utilizar CommandLineParser https://www.nuget.org/packages/CommandLineParser/)
-// - maxDepth (setar um numero grandão se quiser que seja "infinito")
-// - packageVersionSeparator (default|)
-// - package(with version) package|1.0.0 
-// - project
-// - outputFile (return something or another if changed or not so it can be scripted)
 namespace renovate_nuget_version_limit;
 
 internal class Program
@@ -143,10 +137,13 @@ internal class Program
         var resolvedPackages = await WalkDependenciesAsync(0, packages, opts.MaxDepth);
         resolvedPackages = DedupDependencies(resolvedPackages);
 
+        var renovateFile = new RenovateFile();
+
         foreach (var package in resolvedPackages)
         {
-            Console.WriteLine($"{package.Name} {package.Version} {package.Level}");
+            renovateFile.AddPackage(package.Name, package.Version);
         }
-        Console.WriteLine($"{resolvedPackages.Count()} dependencias resolvidas");
+
+        renovateFile.SaveToFile(opts.OutputFileName);
     }
 }

@@ -4,3 +4,4 @@ This project attempts to generate a `renovate.json` file that limits the maximum
 
 ## References
 - [NuGet Client SDK](https://learn.microsoft.com/en-us/nuget/reference/nuget-client-sdk)
+- [Renovate Configuration Options](https://docs.renovatebot.com/configuration-options/)
