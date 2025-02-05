@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/renovate-nuget-version-limit.csproj",
+                "${workspaceFolder}/Maowohl.RenovateVersionLimit.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/renovate-nuget-version-limit.csproj",
+                "${workspaceFolder}/Maowohl.RenovateVersionLimit.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/renovate-nuget-version-limit.csproj"
+                "${workspaceFolder}/Maowohl.RenovateVersionLimit.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

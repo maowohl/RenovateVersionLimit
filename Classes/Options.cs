@@ -1,6 +1,6 @@
 using CommandLine;
 
-namespace renovate_nuget_version_limit.Classes;
+namespace Maowohl.RenovateVersionLimit.Classes;
 
 public class Options
 {

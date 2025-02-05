@@ -6,9 +6,9 @@ using NuGet.Packaging.Core;
 using NuGet.Protocol;
 using NuGet.Protocol.Core.Types;
 using NuGet.Versioning;
-using renovate_nuget_version_limit.Classes;
+using Maowohl.RenovateVersionLimit.Classes;
 
-namespace renovate_nuget_version_limit;
+namespace Maowohl.RenovateVersionLimit;
 
 internal class Program
 {

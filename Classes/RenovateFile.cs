@@ -2,7 +2,7 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace renovate_nuget_version_limit.Classes;
+namespace Maowohl.RenovateVersionLimit.Classes;
 
 public class RenovateFile
 {
