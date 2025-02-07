@@ -14,12 +14,12 @@ jobs:
     
     steps:
       - name: setup .NET
-        uses: https://github.com/actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.x'
       
       - name: checkout code
-        uses: https://github.com/actions/checkout@v4
+        uses: actions/checkout@v4
       
       - name: restore
         run: dotnet restore
@@ -31,7 +31,7 @@ jobs:
         run: dotnet pack
 
       - name: upload artifact
-        uses: https://github.com/actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4
         with:
           name: nupkg
           path: ./nupkg/*.nupkg
