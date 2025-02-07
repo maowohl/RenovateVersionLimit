@@ -6,6 +6,10 @@
     <RootNamespace>Maowohl.RenovateVersionLimit</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Version>0.0.1</Version>
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>renovateversionlimit</ToolCommandName>
+    <PackageOutputPath>./nupkg</PackageOutputPath>
   </PropertyGroup>
 
   <ItemGroup>

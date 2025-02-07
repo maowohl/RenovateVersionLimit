@@ -1,0 +1,37 @@
+name: Build on push
+on:
+  push:
+    branches-ignore:
+      - 'release'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: ghcr.io/catthehacker/ubuntu:pwsh-latest
+    defaults:
+      run:
+        shell: pwsh
+    
+    steps:
+      - name: setup .NET
+        uses: https://github.com/actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
+      
+      - name: checkout code
+        uses: https://gitea.com/actions/checkout@v4
+      
+      - name: restore
+        run: dotnet restore
+      
+      - name: build
+        run: dotnet build
+      
+      - name: pack
+        run: dotnet pack
+
+      - name: upload artifact
+        uses: https://github.com/actions/upload-artifact@v4
+        with:
+          name: nupkg
+          path: ./nupkg/*.nupkg
