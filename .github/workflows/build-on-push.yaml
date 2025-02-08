@@ -29,3 +29,9 @@ jobs:
       
       - name: pack
         run: dotnet pack
+
+      - name: upload artifact to github
+        if: ${{ github.server_url == 'https://github.com' }} # only run on github
+        uses: actions/upload-artifact@v4
+        with:
+          path: ./nupkg/*.nupkg
