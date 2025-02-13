@@ -6,14 +6,23 @@
     <RootNamespace>Maowohl.RenovateVersionLimit</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>0.0.1</Version>
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>renovateversionlimit</ToolCommandName>
     <PackageOutputPath>./nupkg</PackageOutputPath>
+    <!-- stuff required for nuget package -->
+    <Version>0.0.1</Version>
+    <Description>A tool to generate a renovate.json file that limits the maximum version of specified nuget packages to be updated by Renovate</Description>
+    <Authors>Maowohl</Authors>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/maowohl/RenovateVersionLimit.git</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/maowohl/RenovateVersionLimit.git</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageType>DotnetTool</PackageType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
-
+    <None Include="README.md" pack="true" PackagePath="\" />
   </ItemGroup>
 
   <ItemGroup>

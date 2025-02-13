@@ -1,0 +1,68 @@
+name: Release packages
+on:
+  push:
+    branches:
+      - 'release'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    container: ghcr.io/catthehacker/ubuntu:pwsh-latest
+    defaults:
+      run:
+        shell: pwsh
+    
+    steps:
+      - name: setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
+      
+      - name: checkout code
+        uses: actions/checkout@v4
+      
+      - name: restore
+        run: dotnet restore
+      
+      - name: build
+        run: dotnet build
+      
+      - name: pack
+        run: dotnet pack
+
+      - name: upload artifact to github
+        if: ${{ github.server_url == 'https://github.com' }} # only run on github
+        uses: actions/upload-artifact@v4
+        with:
+          path: ./nupkg/*.nupkg
+      
+      - name: get project version
+        id: get-version
+        uses: kzrnm/get-net-sdk-project-versions-action@v2
+        with:
+          proj-path: 'Maowohl.RenovateVersionLimit.csproj'
+      
+      - name: publish release to github
+        if: ${{ github.server_url == 'https://github.com' }} # only run on github
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ./nupkg/*.nupkg
+          name: ${{ steps.get-version.outputs.version }}
+          tag_name: ${{ steps.get-version.outputs.version }}
+      
+      - name: publish release to forgejo
+        if: ${{ github.server_url != 'https://github.com' }} # don't run on github
+        uses: akkuman/gitea-release-action@v1.3.2
+        with:
+          files: ./nupkg/*.nupkg
+          name: ${{ steps.get-version.outputs.version }}
+          tag_name: ${{ steps.get-version.outputs.version }}
+      
+      - name: publish release to nuget.org
+        if: ${{ github.server_url == 'https://github.com' }} # only run on github
+        run: |-
+          dotnet nuget push ./nupkg/*.nupkg \
+            --api-key ${{ secrets.NUGET_API_KEY }} \
+            --source https://api.nuget.org/v3/index.json \
+            --skip-duplicate
+
