@@ -60,9 +60,5 @@ jobs:
       
       - name: publish release to nuget.org
         if: ${{ github.server_url == 'https://github.com' }} # only run on github
-        run: |-
-          dotnet nuget push ./nupkg/*.nupkg \
-            --api-key ${{ secrets.NUGET_API_KEY }} \
-            --source https://api.nuget.org/v3/index.json \
-            --skip-duplicate
+        run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
 
