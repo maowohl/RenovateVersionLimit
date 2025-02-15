@@ -36,4 +36,13 @@ public class RenovateFile
             Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping // does not escape < and >
         }));
     }
+
+    public static RenovateFile FromDependencyList(List<Dependency> dependencies)
+    {
+        var renovateFile = new RenovateFile();
+        foreach (var package in dependencies)
+            renovateFile.AddPackage(package.Name, package.Version);
+        return renovateFile;
+    }
+
 }
