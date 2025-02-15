@@ -20,8 +20,8 @@ internal class Program
 
             // parse package parameters
             .. opts.DependenciesFromPackageNames(),
-            // TODO: parse solution parameters
-
+            // parse solution parameters
+            .. opts.DependenciesFromSolutionFile(),
             // parse project parameters
             .. opts.DependenciesFromProjectFiles(),
         ];

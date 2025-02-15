@@ -28,7 +28,30 @@ public static class OptionsExtensions
         }
     }
 
-    // TODO: parse solution parameters
+    public static IEnumerable<Dependency> DependenciesFromSolutionFile(this Options options)
+    {
+        var projectOptions = new Options();
+        foreach (var solutionFile in options.SolutionFiles.Where(s => !string.IsNullOrWhiteSpace(s)))
+        {
+            SolutionFile solution;
+            try
+            {
+                solution = SolutionFile.Parse(solutionFile);
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException($"Invalid solution file: {solutionFile}. Error: {ex.Message}");
+            }
+
+            // parse projects
+            foreach (var project in solution.ProjectsInOrder)
+            {
+                projectOptions.ProjectFiles.Append(project.RelativePath);
+            }
+        }
+        // reuse DependenciesFromProjectFiles
+        return projectOptions.DependenciesFromProjectFiles();
+    }
 
     public static IEnumerable<Dependency> DependenciesFromProjectFiles(this Options options)
     {
