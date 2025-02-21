@@ -485,4 +485,7 @@ $RECYCLE.BIN/
 
 
 renovate-version-limits.json
+renovate-version-limits-*.json
 [Nn]upkg/
+testsolution/
+testproject/

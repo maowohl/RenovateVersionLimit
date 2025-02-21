@@ -21,11 +21,26 @@ jobs:
       - name: checkout code
         uses: actions/checkout@v4
       
+      - name: tool restore
+        run: dotnet tool restore
+
       - name: restore
         run: dotnet restore
       
       - name: build
         run: dotnet build
+      
+      - name: test with namespace
+        run: dotnet script ./test/test_namespace.csx
+      
+      - name: test with package
+        run: dotnet script ./test/test_package.csx
+      
+      - name: test with project
+        run: dotnet script ./test/test_project.csx
+      
+      - name: test with solution
+        run: dotnet script ./test/test_solution.csx
       
       - name: pack
         run: dotnet pack

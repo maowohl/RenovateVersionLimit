@@ -12,9 +12,10 @@
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/bin/Debug/net8.0/Maowohl.RenovateVersionLimit.dll",
             "args": [
-                //"--help"
-                "-p Volo.Abp|1.0.0 Volo.Abp|1.0.2",
-                "-f ./Maowohl.RenovateVersionLimit.csproj"
+                // "--help"
+                "-p System.Text.Json|5.0.1 System.Runtime|4.0.20",
+                // "-f ./Maowohl.RenovateVersionLimit.csproj"
+                // "-s ./testsolution/TestSolution.sln"
             ],
             "cwd": "${workspaceFolder}",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
@@ -25,6 +26,19 @@
             "name": ".NET Core Attach",
             "type": "coreclr",
             "request": "attach"
+        },
+        {
+            "name": ".NET Script Debug",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "dotnet",
+            "args": [
+                "exec",
+                "C:/Users/mathe/.nuget/packages/dotnet-script/1.6.0/tools/net8.0/any/dotnet-script.dll",
+                "${file}"
+            ],
+            "cwd": "${workspaceRoot}",
+            "stopAtEntry": false
         }
     ]
 }

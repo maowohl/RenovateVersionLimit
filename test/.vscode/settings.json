@@ -1,0 +1,5 @@
+{
+    "dotnet.server.useOmnisharp": true,
+    "omnisharp.enableEditorConfigSupport": true,
+    "editor.formatOnSave": true,
+}
