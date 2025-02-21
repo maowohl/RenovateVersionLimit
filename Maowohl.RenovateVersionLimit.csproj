@@ -10,7 +10,7 @@
     <ToolCommandName>renovateversionlimit</ToolCommandName>
     <PackageOutputPath>./nupkg</PackageOutputPath>
     <!-- stuff required for nuget package -->
-    <Version>0.0.4</Version>
+    <Version>0.0.5</Version>
     <Description>A tool for generating renovate.json files that limit the maximum version of specified nuget packages to be updated by Renovate</Description>
     <Authors>Maowohl</Authors>
     <PackageReadmeFile>README.md</PackageReadmeFile>
