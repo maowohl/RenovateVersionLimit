@@ -7,7 +7,7 @@ public class Options
     [Option('d', "depth", Required = false, HelpText = "Maximum depth of the search.")]
     public int MaxDepth { get; set; } = int.MaxValue;
 
-    [Option('s', "separator", Required = false, HelpText = "Version separator to use with the package option.")]
+    [Option("separator", Required = false, HelpText = "Version separator to use with the package option.")]
     public string VersionSeparator { get; set; } = "|";
 
     [Option('p', "package", Separator = ' ', Required = false, HelpText = "Package name to search for. Formatted as <name><separator><version>.")]

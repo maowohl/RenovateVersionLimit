@@ -36,7 +36,8 @@ public static class OptionsExtensions
             SolutionFile solution;
             try
             {
-                solution = SolutionFile.Parse(solutionFile);
+                var absolutePath = Path.GetFullPath(solutionFile);
+                solution = SolutionFile.Parse(absolutePath);
             }
             catch (Exception ex)
             {
@@ -46,7 +47,7 @@ public static class OptionsExtensions
             // parse projects
             foreach (var project in solution.ProjectsInOrder)
             {
-                projectOptions.ProjectFiles.Append(project.RelativePath);
+                projectOptions.ProjectFiles = projectOptions.ProjectFiles.Append(project.AbsolutePath);
             }
         }
         // reuse DependenciesFromProjectFiles
