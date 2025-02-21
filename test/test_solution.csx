@@ -7,7 +7,7 @@ Log("Running integration tests...");
 CleanUp();
 
 Log("Creating solution...");
-Run("dotnet", "dotnet new solution -n TestSolution -o testsolution  -f sln");
+Run("dotnet", "dotnet new solution -n TestSolution -o testsolution");
 
 Log("Creating project and adding to solution...");
 Run("dotnet", "dotnet new classlib -n TestProject -o testsolution/TestProject");
